@@ -1,0 +1,47 @@
+<?php require_once("_scripts/connection.php"); // DATABASE CONNECTION ?>
+<?php require_once("_scripts/functions.php"); // STORAGE FOR ALL BASIC FUNCTIONS ?>
+<?php require_once("_scripts/session.php"); // CONTROLS SESSIONS ?>
+<?php confirm_logged_in();
+  // ALLOW STUDENTS
+    if (logged_in()) {
+      // allow user to view current site
+      student_page_access();
+    }
+  // DISPLAY FAQS AVAILABLE
+    $query = "SELECT *
+                FROM CONTENT
+                WHERE CONTENT_TYPE = 'FAQ'
+                ORDER BY CONTENT_TITLE ASC;";
+    $faqs_available = mysql_query($query);
+?>
+<?php include("_scripts/header.php"); ?>
+  <!-- Header  -->
+    <div class="row">
+      <div class="twelve columns">
+        <h2>Legal Terms and Conditions</h2>      
+      </div>
+    </div>
+  <!-- End Header -->
+  <div class="row">
+    <div class="twelve columns">
+      <div class="row">
+        <div class="twelve columns">
+          <div class="panel">
+            <label>The Tutoring and Testing Reservation System is the rightful property of Colorado Technical University.  
+			       By using this system you are agreeing not to falsify personal information for the purpose of creating an
+				   account.  Users also agree not to schedule appointments that they do not actually intend to show up for as
+				   it creates a large inconvenience for those tutors and staff that the appointments are scheduled with.
+				   The TATeRS system is provided as a helpful tool for staff, tutors, and students.  Because of this, using the
+				   system implies that the user is agreeing not to disclose any personal information about any others that may,
+				   or may not be available to them.  It is also imperative that anyone using the system does not use the 
+				   scheduling functions for the any purpose rather than what it is intended for.  This also goes for any of
+				   the other functions provided by the TATeRS system.</label>
+              <!-- View Legal Terms and Conditions -->
+                
+              <!-- End View Legal Terms and Conditions -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<?php include("_scripts/footer.php"); ?>
